@@ -11,18 +11,34 @@ if(command === 'add'){
   const note = notes.addNote(argv.title, argv.body)
   if(note != undefined){
     console.log(`Note Added`)
-    console.log('------')
-    console.log(`Title: ${note.title}`)
-    console.log(`Body: ${note.body}`)
+    notes.logNote(note)
   } else {
     console.log('Please choose a unique title')
   }
-} else if (command === 'list'){
-  notes.getAll()
-} else if(command === 'read'){
-  notes.getNote(argv.title)
-} else if (command === 'remove'){
-  notes.removeNote(argv.title)
-} else {
+} 
+
+else if (command === 'list'){
+  
+} 
+
+else if(command === 'read'){
+  const note = notes.getNote(argv.title)
+  if(note){
+    console.log(`Note Found`)
+    notes.logNote(note)
+  } else {
+    console.log('Note Not Found')
+  }
+  
+} 
+
+else if (command === 'remove'){
+  const noteRemoved = notes.removeNote(argv.title)
+  
+  const message = noteRemoved ? 'Note was removed' : 'Note Not Found'
+  console.log(message)
+} 
+
+else {
   console.log('Command Not Recognized')
 }
