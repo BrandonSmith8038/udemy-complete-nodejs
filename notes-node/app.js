@@ -1,5 +1,3 @@
-console.log('starting app')
-
 const fs = require('fs')
 const _ = require('lodash')
 const yargs = require('yargs')
@@ -9,11 +7,16 @@ const notes = require('./notes.js')
 const argv = yargs.argv
 const command = argv._[0]
 
-
-console.log('Yargs', argv)
-
 if(command === 'add'){
-  notes.addNote(argv.title, argv.body)
+  const note = notes.addNote(argv.title, argv.body)
+  if(note != undefined){
+    console.log(`Note Added`)
+    console.log('------')
+    console.log(`Title: ${note.title}`)
+    console.log(`Body: ${note.body}`)
+  } else {
+    console.log('Please choose a unique title')
+  }
 } else if (command === 'list'){
   notes.getAll()
 } else if(command === 'read'){
