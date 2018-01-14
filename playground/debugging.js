@@ -1,10 +1,10 @@
 const person = {
   name: 'Brandon'
-}
+};
 
-person.age = 32
+person.age = 32;
 
-debugger
+debugger;
 
-person.name = 'Amber'
-console.log(person)
+person.name = 'Amber';
+console.log(person);

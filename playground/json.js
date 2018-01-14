@@ -11,18 +11,18 @@ const person = JSON.parse(personString)
 console.log(typeof person)
 console.log(person)*/
 
-const fs = require('fs')
+const fs = require('fs');
 
 const originalNote = {
-  title: "Some Title",
-  body: "Some Body"
-}
+  title: 'Some Title',
+  body: 'Some Body'
+};
 
-const originalNoteString = JSON.stringify(originalNote)
-fs.writeFileSync('notes.json', originalNoteString)
+const originalNoteString = JSON.stringify(originalNote);
+fs.writeFileSync('notes.json', originalNoteString);
 
-const noteString = fs.readFileSync('notes.json')
-const note = JSON.parse(noteString)
+const noteString = fs.readFileSync('notes.json');
+const note = JSON.parse(noteString);
 
-console.log(typeof note)
-console.log(note.title)
+console.log(typeof note);
+console.log(note.title);

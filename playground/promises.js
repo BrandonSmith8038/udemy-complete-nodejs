@@ -1,14 +1,14 @@
-const asyncAdd = (a,b) => {
+const asyncAdd = (a, b) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if(typeof a === 'number' && typeof b === 'number'){
-        resolve(a + b)
+      if (typeof a === 'number' && typeof b === 'number') {
+        resolve(a + b);
       } else {
-        reject('Arguments Must Numbers')
+        reject('Arguments Must Numbers');
       }
-    }, 1500)
-  })
-}
+    }, 1500);
+  });
+};
 
 /*const somePromise =  new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -24,9 +24,12 @@ somePromise.then((message) => {
   console.log('Err: ', err)
 })*/
 
-asyncAdd(5,7).then(result => {
-  console.log('Result: ', result)
-  return asyncAdd(result, 33)
-}).then(res => {
-  console.log('Should Be 45: ', res)
-}).catch(err =>  console.log(err))
+asyncAdd(5, 7)
+  .then(result => {
+    console.log('Result: ', result);
+    return asyncAdd(result, 33);
+  })
+  .then(res => {
+    console.log('Should Be 45: ', res);
+  })
+  .catch(err => console.log(err));
