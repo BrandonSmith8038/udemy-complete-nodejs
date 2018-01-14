@@ -24,6 +24,10 @@ axios.get(geocodeURL).then((response) => {
   if(response.data.status === 'ZERO_RESULTS'){
     throw new Error('Unable to find that address')
   }
+  
+  const lat = ''
+  const lgn = ''
+  const weatherUrl = `https://api.darksky.net/forecast/e04f6c49479e2bfa1c849fcd48d6d6e1/${lat},${lng}`
   console.log(response.data)
 }).catch(err => {
   if(err.code === 'ENOTFOUND'){
