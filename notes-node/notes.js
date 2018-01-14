@@ -31,8 +31,8 @@ const addNote = (title, body) => {
   } 
 }
 
-const getAll = (title) => {
-  
+const getAll = () => {
+  return fetchNotes()
 }
 
 const getNote = title => {
