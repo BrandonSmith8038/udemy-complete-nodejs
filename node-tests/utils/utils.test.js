@@ -42,3 +42,17 @@ it('Should set first and last name', () => {
   expect(res).toInclude({firstName: 'Brandon'}).toBeA('object')
   expect(res).toInclude({lastName: 'Smith'}).toBeA('object')
 })
+
+it('Should async two numbers', (done) => {
+  utils.asyncAdd(4,7, (sum) => {
+    expect(sum).toBe(11).toBeA('number')
+    done()
+  })
+})
+
+it('Should async square a number', done => {
+  utils.asyncSquare(8, res => {
+    expect(res).toBe(64).toBeA('number')
+    done()
+  })
+})
