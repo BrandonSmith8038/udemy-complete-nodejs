@@ -1,4 +1,5 @@
-const MongoClient =  require('mongodb').MongoClient
+//const MongoClient =  require('mongodb').MongoClient
+const {MongoClient, ObjectID} =  require('mongodb')
 
 MongoClient.connect('mongodb://cowboy8038:Nascar8038@ds127801.mlab.com:27801/complete-nodejs-todolist', (err, db) => {
   if(err){
@@ -6,30 +7,30 @@ MongoClient.connect('mongodb://cowboy8038:Nascar8038@ds127801.mlab.com:27801/com
   }
   console.log('Connected To MongoDB server')
   
-  // db.collection('Todos').insertOne({
+  db.collection('Todos').insertOne({
     
-  //   'text': 'Something To Do',
-  //   'completed': 'false'
+    'text': 'Todo Item 2',
+    'completed': 'True'
     
-  // }, (err, result) => {
+  }, (err, result) => {
     
-  //   if(err){
-  //     return console.log('Unable to insert todo', err)
-  //   }
+    if(err){
+      return console.log('Unable to insert todo', err)
+    }
     
-  //   console.log(JSON.stringify(result.ops, undefined, 2))
-  // })
+    console.log(JSON.stringify(result.ops, undefined, 2))
+  })
   
-  db.collection('Users').insertOne({
-    'name': 'Brandon',
-    'age': 32,
-    'location': 'Goodyear, AZ'
+  /*db.collection('Users').insertOne({
+    'name': 'Amber',
+    'age': 33,
+    'location': 'Amarillo, TX'
   }, (err, result) => {
     if(err){
       return console.log('Unable to add user', err)
     }
-    console.log(JSON.stringify(result.ops, undefined, 2))
-  })
+    console.log(result.ops[0]._id.getTimestamp())
+  })*/
   
   db.close()
 })
