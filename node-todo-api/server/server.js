@@ -1,28 +1,34 @@
-const mongoose = require('mongoose')
+const express = require('express')
+const bodyParser = require('body-parser')
 
-mongoose.Promise = global.Promise
+const {mongoose} = require('./db/mongoose')
+const {Todo} = require("./models/todos") 
+const {User} = require("./models/users")
 
-mongoose.connect('mongodb://cowboy8038:Nascar8038@ds127801.mlab.com:27801/complete-nodejs-todolist')
+const app = express()
 
-const Todo = mongoose.model('Todo', {
-  text: {
-    type: String,
-    
-  },
-  completed: {
-    type: Boolean
-  },
-  completedAt: {
-    type: Number
-  }
+app.use(bodyParser.json());
+
+app.get('/', (req, res) => {
+  res.send('Todo\'s Api')
 })
 
-const secondTodo = new Todo({
-  text: 'Eat Dinner',
-  completed: true,
-  completedAt: new Date().getDate()
+app.post('/todos', (req, res) => {
+  const todo = new Todo({
+    text: req.body.text
+  })
+  
+    todo.save().then(doc => {
+      res.send(doc)
+    }, e => {
+      res.status(400).send(e)
+    })
 })
+  
 
-secondTodo.save().then(doc => {
-  console.log('Saved Todo', doc)
-}, e => console.log('Unable To Save Todo'))
+const port = process.env.PORT || 3000
+const ip = process.env.IP
+
+app.listen(port, ip, () => console.log(`App started on port ${port}`))
+
+
