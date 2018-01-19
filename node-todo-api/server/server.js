@@ -50,6 +50,23 @@ app.get('/todos/:id', (req, res) => {
   })
   }
 })
+
+app.delete('/todos/:id',(req, res) => {
+  const id = req.params.id
+  
+  if(!ObjectID.isValid(id)){
+    return res.status(404)
+  } else {
+    Todo.findByIdAndRemove('5a61eab4f4c6883e7e0268ec').then(todo => {
+      if(!todo){
+        res.status(404)
+      }
+      res.send(todo)
+    }, e => {
+    res.status(404).send(e)
+  })
+  }
+})
   
 
 const port = process.env.PORT || 3000
