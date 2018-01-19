@@ -32,3 +32,7 @@ const ip = process.env.IP
 app.listen(port, ip, () => console.log(`App started on port ${port}`))
 
 
+
+module.exports = {app}
+
+
