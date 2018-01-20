@@ -62,6 +62,27 @@ UserSchema.statics.findByToken = function(token){
   })
 }
 
+UserSchema.statics.findByCredentials = function(email, password){
+  const user = this
+  
+  return user.findOne({email}).then(foundUser => {
+    if(!foundUser){
+      return Promise.reject()
+    }
+    
+    
+    return new Promise((resolve, reject) => {
+      bcrypt.compare(password, foundUser.password, (err, res) => {
+        if(res){
+          resolve(foundUser)
+        } else {
+          reject()
+        }
+      })
+    })
+  })
+}
+
 UserSchema.methods.toJSON = function(){
   const user = this
   const userObject = user.toObject()
