@@ -32,23 +32,28 @@ const users = [
 const todos = [
   {
     text: 'Todo Item 1',
-    completed: false
+    completed: false,
+    _creator: '5a6474d9d164c86d7ab3b927'
   },
   {
     text: 'Todo Item 2',
-    completed: true
+    completed: true,
+    _creator: '5a6474d9d164c86d7ab3b927'
   },
   {
     text: 'Todo Item 3',
-    completed: false
+    completed: false,
+    _creator: '5a6474d9d164c86d7ab3b927'
   },
   {
     text: 'Todo Item 4',
-    completed: true
+    completed: true,
+    _creator: '5a6476ca0e0a14af7a88f4c7'
   },
   {
     text: 'Todo Item 5',
-    completed: false
+    completed: false,
+    _creator: '5a6476ca0e0a14af7a88f4c7'
   }
 ];
 
@@ -95,7 +100,8 @@ function addTodos() {
         db.collection('todos').insertOne(
           {
             text: todo.text,
-            completed: todo.completed
+            completed: todo.completed,
+            _creator: todo._creator
           },
           (err, result) => {
             if (err) {
