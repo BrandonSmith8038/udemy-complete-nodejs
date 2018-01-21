@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const Todo = mongoose.model('Todo', {
   text: {
@@ -6,7 +6,6 @@ const Todo = mongoose.model('Todo', {
     required: true,
     minLength: 1,
     trim: true
-    
   },
   completed: {
     type: Boolean,
@@ -16,6 +15,6 @@ const Todo = mongoose.model('Todo', {
     type: Number,
     default: null
   }
-})
+});
 
-module.exports = {Todo}
+module.exports = { Todo };

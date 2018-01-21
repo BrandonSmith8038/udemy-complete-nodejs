@@ -1,7 +1,7 @@
-const {mongoose} = require('./../server/db/mongoose')
-const {ObjectID} = require('mongodb')
-const {Todo} = require('./../server/models/todos')
-const {User} = require('./../server/models/users')
+const { mongoose } = require('./../server/db/mongoose');
+const { ObjectID } = require('mongodb');
+const { Todo } = require('./../server/models/todos');
+const { User } = require('./../server/models/users');
 
 // const id = 'a61d576c6723f3be344f377'
 
@@ -35,17 +35,17 @@ Todo.findOne({
 }).catch(e => console.log(e))
 */
 
+const id = '6a61b6c250fa94c12dea20a1';
 
-const id = '6a61b6c250fa94c12dea20a1'
-
-if(!ObjectID.isValid(id)){
-  return console.log('This Is Not A Valid ID')
+if (!ObjectID.isValid(id)) {
+  return console.log('This Is Not A Valid ID');
 } else {
-  User.findById(id).then(user => {
-  if(!user){
-    return console.log('User Not Found')
-  }
-  console.log('User: ', user)
-}).catch(e => console.log(e))
+  User.findById(id)
+    .then(user => {
+      if (!user) {
+        return console.log('User Not Found');
+      }
+      console.log('User: ', user);
+    })
+    .catch(e => console.log(e));
 }
-
