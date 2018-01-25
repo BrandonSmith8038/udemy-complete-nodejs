@@ -18,12 +18,14 @@ io.on('connection', socket => {
   
   socket.emit('newMessage', {
     from: 'Admin',
-    text: 'Welcome To The Chat App!!'
+    text: 'Welcome To The Chat App!!',
+    createdAt: new Date().getTime()
   })
   
   socket.broadcast.emit('newMessage',{
     from: 'Admin',
-    text: 'New User Has Joined'
+    text: 'New User Has Joined',
+    createdAt: new Date().getTime()
   })
   
   socket.on('createMessage', message => {
