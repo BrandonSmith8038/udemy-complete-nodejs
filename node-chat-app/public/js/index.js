@@ -49,9 +49,9 @@ messageForm.addEventListener('submit', (e) => {
     text: message.value
   }, () => {
     
+    message.value = ''
   })
   
-    message.value = ''
   
 })
 
@@ -60,12 +60,20 @@ locationButton.addEventListener('click', () => {
     return alert('Geolocation Not Supported By Your Browser')
   }
   
+  locationButton.disabled = true
+  locationButton.innerHTML = 'Searching'
+  
   navigator.geolocation.getCurrentPosition(position => {
+    locationButton.disabled = false
+    locationButton.innerHTML = 'Send Location'
     socket.emit('createLocationMessage', {
       latitude: position.coords.latitude,
       longitude: position.coords.longitude
+      
     })
   }, () => {
     alert('Unable To Fetch Location')
+    locationButton.disabled = false
+    locationButton.innerHTML = 'Send Location'
   })
 })
