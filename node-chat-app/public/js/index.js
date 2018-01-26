@@ -10,11 +10,11 @@ socket.on('disconnect', () => {
 
 
 socket.on('newMessage', message => {
-  console.log('New Message', message)
+  const formattedTime = moment(message.createdAt).format('h:mm a')
   const messages = document.getElementById('messages')
   const li = document.createElement('li')
     
-  li.appendChild(document.createTextNode(`${message.from}: ${message.text}`))
+  li.appendChild(document.createTextNode(`${formattedTime} ${message.from}: ${message.text}`))
   
     
   messages.appendChild(li)  
@@ -22,6 +22,8 @@ socket.on('newMessage', message => {
 })
 
 socket.on('newLocationMessage', message => {
+  const formattedTime = moment(message.createdAt).format('h:mm a')
+  
   const messages = document.getElementById('messages')
   const li = document.createElement('li')
   const link = document.createElement('a')
@@ -29,7 +31,7 @@ socket.on('newLocationMessage', message => {
   link.setAttribute('href', message.url)
   link.setAttribute('target', '_blank')
   link.innerHTML = `My Current Location`
-  li.appendChild(document.createTextNode('From: '))
+  li.appendChild(document.createTextNode(`${formattedTime} User `))
   li.appendChild(link)
   messages.appendChild(li)
   
