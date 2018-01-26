@@ -112,7 +112,6 @@ messageForm.addEventListener('submit', (e) => {
   e.preventDefault()
 
   socket.emit('createMessage', {
-    from: 'User',
     text: message.value
   }, () => {
     
