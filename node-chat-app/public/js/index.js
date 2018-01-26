@@ -10,19 +10,27 @@ socket.on('disconnect', () => {
 
 
 socket.on('newMessage', message => {
+  
   const formattedTime = moment(message.createdAt).format('h:mm a')
   const messages = document.getElementById('messages')
+  const template = document.getElementById('message-template').textContent
   const li = document.createElement('li')
-    
-  li.appendChild(document.createTextNode(`${formattedTime} ${message.from}: ${message.text}`))
+  li.className = 'message'
   
-    
-  messages.appendChild(li)  
-    
+  const html = Mustache.render(template,{
+    text: message.text,
+    from: message.from,
+    createdAt: formattedTime
+  })
+  
+  
+  
+    li.innerHTML = html
+    messages.appendChild(li)
 })
 
 socket.on('newLocationMessage', message => {
-  const formattedTime = moment(message.createdAt).format('h:mm a')
+  /*const formattedTime = moment(message.createdAt).format('h:mm a')
   
   const messages = document.getElementById('messages')
   const li = document.createElement('li')
@@ -33,7 +41,24 @@ socket.on('newLocationMessage', message => {
   link.innerHTML = `My Current Location`
   li.appendChild(document.createTextNode(`${formattedTime} User `))
   li.appendChild(link)
-  messages.appendChild(li)
+  messages.appendChild(li)*/
+  
+  const formattedTime = moment(message.createdAt).format('h:mm a')
+  const messages = document.getElementById('messages')
+  const template = document.getElementById('location-message-template').textContent
+  const li = document.createElement('li')
+  li.className = 'message'
+  
+  const html = Mustache.render(template,{
+    url: message.url,
+    from: message.from,
+    createdAt: formattedTime
+  })
+  
+  
+  
+    li.innerHTML = html
+    messages.appendChild(li)
   
 })
 
